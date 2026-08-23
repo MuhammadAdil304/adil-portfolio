@@ -1,0 +1,38 @@
+export type ContentItem = {
+  _id: string;
+  title?: string;
+  subtitle?: string;
+  skillName?: string;
+  institutionName?: string;
+  institutionLogo?: string;
+  degree?: string;
+  fieldOfStudy?: string;
+  gpa?: string;
+  companyName?: string;
+  companyLogo?: string;
+  position?: string;
+  employmentType?: string;
+  location?: string;
+  currentlyWorking?: boolean;
+  projectName?: string;
+  projectImage?: string;
+  githubRepositoryUrl?: string;
+  liveDemoUrl?: string;
+  techStack?: readonly string[];
+  certificateName?: string;
+  issuingOrganization?: string;
+  issueDate?: string;
+  certificateImage?: string;
+  credentialUrl?: string;
+  email?: string;
+  phone?: string;
+  description?: string;
+  imageUrl?: string;
+  url?: string;
+  startDate?: string;
+  endDate?: string;
+  tags?: readonly string[];
+  createdAt?: string;
+  updatedAt?: string;
+};
+
