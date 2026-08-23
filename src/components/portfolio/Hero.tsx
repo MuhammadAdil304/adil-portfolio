@@ -2,7 +2,7 @@
 import { Box, Button, Chip, Container, Paper, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { heroActions, heroHighlights } from "../../data/hero";
-const hero_img = "./src/assets/hero_img.png";
+const hero_img = "/hero_img.png";
 
 export const Hero = () => {
   const name = "Muhammad Adil";
