@@ -33,8 +33,14 @@ export const Hero = () => {
             {heroHighlights.map((item) => <Chip key={item} label={item} />)}
           </Box>
         </Box>
-        <Box>
-          <img src={hero_img} alt="my picture" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%", border: "1px solid rgba(255,255,255,0.16)", }} />
+        <Box sx={{ position: "relative", width: "400px", height: "400px", margin: "auto" }}>
+          <img src={hero_img} alt="my picture" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "50%", border: "2px solid #fff", transition: "transform 0.3s ease" }} />
+          {/* Hover effect for the image */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+          />
         </Box>
       </Container>
     </Box>
