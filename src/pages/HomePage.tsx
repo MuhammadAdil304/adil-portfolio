@@ -17,9 +17,9 @@ export default function HomePage() {
       <Hero />
       <About />
       <SkillsSection />
-      <VerticalTimeline id="education" title="Education" items={education} variant="education" />
       <VerticalTimeline id="experience" title="Experience" items={experience} variant="experience" />
       <ProjectsSection />
+      <VerticalTimeline id="education" title="Education" items={education} variant="education" />
       <ContactSection />
       <Footer />
     </>

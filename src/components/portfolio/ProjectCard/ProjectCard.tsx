@@ -2,7 +2,8 @@ import { useState, useRef, useLayoutEffect } from "react";
 import { Chip, Box, Typography, Button, Card, CardContent, CardMedia, CardActions } from "@mui/material";
 import { GitHub, Launch } from "@mui/icons-material";
 import { motion } from "framer-motion";
-import type { Project } from "../../data/projects";
+import type { Project } from "../../../data/projects";
+import { descriptionStyle, projectCardStyles } from "./ProjectCard.styles";
 
 const MAX_LINES = 4;
 
@@ -49,22 +50,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      sx={{
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        bgcolor: "background.paper",
-        border: "1px solid",
-        borderColor: "divider",
-        borderRadius: 3,
-        overflow: "hidden",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease",
-        "&:hover": {
-          transform: "translateY(-6px)",
-          boxShadow: "0 12px 30px rgba(0, 0, 0, 0.4)",
-          borderColor: "primary.main",
-        },
-      }}
+      sx={projectCardStyles.card}
     >
       {project.projectImage ? (
         <CardMedia
@@ -72,30 +58,20 @@ export const ProjectCard = ({ project }: { project: Project }) => {
           height="300"
           image={project.projectImage}
           alt={project.projectName || "Project"}
-          sx={{ objectFit: "cover" }}
+          sx={projectCardStyles.media}
         />
       ) : (
         <Box
-          sx={{
-            height: 200,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            bgcolor: "rgba(255, 255, 255, 0.02)",
-            borderBottom: "1px solid",
-            borderColor: "divider",
-            color: "text.disabled",
-            fontStyle: "italic",
-          }}
+          sx={projectCardStyles.noMedia}
         >
-          <Typography variant="body2" sx={{ opacity: 0.5 }}>
+          <Typography variant="body2" sx={projectCardStyles.noMediaText}>
             {project.projectName || "No project image available"}
           </Typography>
         </Box>
       )}
 
-      <CardContent sx={{ flexGrow: 1, p: 3 }}>
-        <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5, lineHeight: 1.3, color: "text.primary" }}>
+      <CardContent sx={projectCardStyles.content}>
+        <Typography variant="h5" sx={projectCardStyles.title}>
           {project.projectName}
         </Typography>
 
@@ -103,29 +79,18 @@ export const ProjectCard = ({ project }: { project: Project }) => {
           <Typography
             variant="subtitle2"
             color="primary.light"
-            sx={{ mb: 2, fontWeight: 500 }}
+            sx={projectCardStyles.subtitle}
           >
             {project.subtitle}
           </Typography>
         )}
 
-        <Box sx={{ mb: 1 }}>
+        <Box sx={projectCardStyles.descriptionWrapper}>
           {project.description && (
             <Typography
               ref={textRef}
               variant="body2"
-              sx={{
-                ...(!isExpanded && {
-                  display: "-webkit-box",
-                  WebkitLineClamp: MAX_LINES,
-                  WebkitBoxOrient: "vertical",
-                  maxHeight: `calc(1.6em * ${MAX_LINES})`,
-                  overflow: "hidden",
-                }),
-                color: "text.secondary",
-                mb: 1,
-                lineHeight: 1.6,
-              }}
+              sx={descriptionStyle(isExpanded)}
             >
               {project.description}
             </Typography>
@@ -135,7 +100,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
               variant="text"
               size="small"
               onClick={toggleExpand}
-              sx={{ p: 0, minWidth: "auto", textTransform: "none", fontWeight: 600, color: "primary.main" }}
+              sx={projectCardStyles.more}
             >
               {isExpanded ? "Show Less" : "Show More"}
             </Button>
@@ -143,22 +108,14 @@ export const ProjectCard = ({ project }: { project: Project }) => {
         </Box>
 
         {techStack && techStack.length > 0 && (
-          <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mt: 3 }}>
+          <Box sx={projectCardStyles.tags}>
             {techStack.map((tag: string) => (
               <Chip
                 key={tag}
                 label={tag}
                 size="small"
                 variant="outlined"
-                sx={{
-                  color: "text.secondary",
-                  borderColor: "rgba(255, 255, 255, 0.15)",
-                  bgcolor: "rgba(255, 255, 255, 0.03)",
-                  fontWeight: 500,
-                  "&:hover": {
-                    bgcolor: "rgba(255, 255, 255, 0.08)",
-                  }
-                }}
+                sx={projectCardStyles.tag}
               />
             ))}
           </Box>
@@ -166,8 +123,8 @@ export const ProjectCard = ({ project }: { project: Project }) => {
       </CardContent>
 
       {(hasGitHub || hasLiveDemo || project.startDate || project.endDate) && (
-        <CardActions sx={{ p: 3, pt: 0, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 2 }}>
-          <Box sx={{ display: "flex", gap: 1.5 }}>
+        <CardActions sx={projectCardStyles.actions}>
+          <Box sx={projectCardStyles.actionGroup}>
             {hasLiveDemo && (
               <Button
                 component="a"
@@ -177,7 +134,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 target="_blank"
                 rel="noreferrer"
                 startIcon={<Launch fontSize="small" />}
-                sx={{ borderRadius: 2, textTransform: "none", fontWeight: 600, px: 2 }}
+                sx={projectCardStyles.actionButton}
               >
                 Live Demo
               </Button>
@@ -191,7 +148,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 target="_blank"
                 rel="noreferrer"
                 startIcon={<GitHub fontSize="small" />}
-                sx={{ borderRadius: 2, textTransform: "none", fontWeight: 600, px: 2 }}
+                sx={projectCardStyles.actionButton}
               >
                 Code
               </Button>
@@ -199,7 +156,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
           </Box>
 
           {(project.startDate || project.endDate) && (
-            <Box sx={{ display: "flex", gap: 0.5, color: "text.disabled", fontSize: "0.85rem", fontWeight: 500 }}>
+            <Box sx={projectCardStyles.dates}>
               {project.startDate && <span>{new Date(project.startDate).getFullYear()}</span>}
               {project.startDate && project.endDate && <span>-</span>}
               {project.endDate && <span>{project.endDate ? new Date(project.endDate).getFullYear() : "Present"}</span>}

@@ -1,8 +1,10 @@
+import nodshiftLogo from "../assets/nodShift_logo.jpg";
+
 export const experience = [
   {
     _id: "exp-associate-software-engineer",
     companyName: "Nodshift",
-    companyLogo: "",
+    companyLogo: nodshiftLogo,
     position: "Associate Software Engineer",
     employmentType: "Part-time",
     location: "Remote (team based in Austin, TX)",
@@ -16,7 +18,7 @@ export const experience = [
   {
     _id: "exp-software-engineer-intern",
     companyName: "Nodshift",
-    companyLogo: "",
+    companyLogo: nodshiftLogo,
     position: "Software Engineer Intern",
     employmentType: "Part-time",
     location: "Remote (team based in Austin, TX)",

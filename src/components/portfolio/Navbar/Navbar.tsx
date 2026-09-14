@@ -1,0 +1,6 @@
+import { AppBar, Box, Button, Container, Stack, Toolbar, Typography } from "@mui/material";
+import { GitHub } from "@mui/icons-material";
+import { motion } from "framer-motion";
+import { navigationLinks } from "../../../data/navigation";
+import { navbarStyles } from "./Navbar.styles";
+export const Navbar = () => <AppBar component={motion.header} position="sticky" color="transparent" elevation={0} initial={{ opacity:0,y:-16 }} animate={{ opacity:1,y:0 }} transition={{ duration:.35 }} sx={navbarStyles.root}><Container maxWidth="lg"><Toolbar disableGutters sx={navbarStyles.toolbar}><Box sx={navbarStyles.logo}><Typography component="a" href="#top" variant="h6">Adil.dev</Typography></Box><Stack component="nav" direction="row" spacing={1} sx={navbarStyles.links}>{navigationLinks.map((link)=><Button key={link.href} href={link.href} color="inherit" size="small">{link.label}</Button>)}</Stack><Box sx={navbarStyles.actions}><Button href="https://github.com/adil" target="_blank" rel="noreferrer" variant="outlined" size="small" startIcon={<GitHub fontSize="small" />} sx={navbarStyles.github}>GitHub</Button><Box sx={navbarStyles.mobileLabel}>Portfolio</Box></Box></Toolbar></Container></AppBar>;

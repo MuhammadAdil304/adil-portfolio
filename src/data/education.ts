@@ -1,8 +1,11 @@
+import majuLogo from "../assets/maju_logo.webp";
+import biekLogo from "../assets/biek_logo.png";
+
 export const education = [
   {
     _id: "edu-bsc",
     institutionName: "Muhammad Ali Jinnah University",
-    institutionLogo: "",
+    institutionLogo: majuLogo,
     degree: "Bachelor's Degree",
     fieldOfStudy: "Computer Software Engineering",
     startDate: "",
@@ -13,7 +16,7 @@ export const education = [
   {
     _id: "edu-high-school",
     institutionName: "Board of Intermediate Education Karachi (BIEK)",
-    institutionLogo: "",
+    institutionLogo: biekLogo,
     degree: "High School Diploma",
     fieldOfStudy: "Computer Science",
     startDate: "2023-05-01",
