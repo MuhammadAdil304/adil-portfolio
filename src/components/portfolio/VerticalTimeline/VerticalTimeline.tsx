@@ -2,6 +2,7 @@
 import { Box, Button, Card, CardContent, Chip, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import type { ContentItem } from "../../../types/content";
+import { getSkillIcon } from "../../../data/skillIcons";
 import { Section } from "../../common/Section";
 import { markerStyle, timelineStyles } from "./VerticalTimeline.styles";
 
@@ -82,7 +83,10 @@ export const VerticalTimeline = ({ id, title, items, variant }: VerticalTimeline
                   {item.description ? <Typography variant="body2" color="text.secondary" sx={timelineStyles.description}>{item.description}</Typography> : null}
                   {item.techStack?.length ? (
                     <Box sx={timelineStyles.tags}>
-                      {item.techStack.map((tag) => <Chip key={tag} label={tag} size="small" />)}
+                      {item.techStack.map((tag) => {
+                        const SkillIcon = getSkillIcon(tag);
+                        return <Chip key={tag} label={tag} icon={SkillIcon ? <SkillIcon color="default" size={16} title={tag} /> : undefined} size="small" />;
+                      })}
                     </Box>
                   ) : null}
                   {hasLinks ? (

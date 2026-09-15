@@ -15,7 +15,7 @@ export const timelineStyles: Record<string, SxProps<Theme>> = {
   subheading: { mt: 0.75, fontWeight: 700 },
   location: { alignSelf: { xs: "flex-start", sm: "center" } },
   description: { mt: 2, lineHeight: 1.8 },
-  tags: { display: "flex", gap: 1, flexWrap: "wrap", mt: 2.5 },
+  tags: { display: "flex", gap: 1, flexWrap: "wrap", mt: 2.5, "& .MuiChip-icon": { ml: 0.75, mr: -0.25 } },
   links: { display: "flex", gap: 1.5, flexWrap: "wrap", mt: 3 },
 };
 export function markerStyle(experience: boolean): SxProps<Theme> { return { ...timelineStyles.marker, borderColor: experience ? "primary.light" : "secondary.light" }; }

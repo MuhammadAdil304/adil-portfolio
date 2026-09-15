@@ -11,7 +11,7 @@ export const projectCardStyles: Record<string, SxProps<Theme>> = {
   description: { color: "text.secondary", mb: 1, lineHeight: 1.6 },
   more: { p: 0, minWidth: "auto", textTransform: "none", fontWeight: 600, color: "primary.main" },
   tags: { display: "flex", gap: 1, flexWrap: "wrap", mt: 3 },
-  tag: { color: "text.secondary", borderColor: "rgba(255,255,255,.15)", bgcolor: "rgba(255,255,255,.03)", fontWeight: 500, "&:hover": { bgcolor: "rgba(255,255,255,.08)" } },
+  tag: { color: "text.secondary", borderColor: "rgba(255,255,255,.15)", bgcolor: "rgba(255,255,255,.03)", fontWeight: 500, "& .MuiChip-icon": { ml: 0.75, mr: -0.25 }, "&:hover": { bgcolor: "rgba(255,255,255,.08)" } },
   actions: { p: 3, pt: 0, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 2 },
   actionGroup: { display: "flex", gap: 1.5 },
   actionButton: { borderRadius: 2, textTransform: "none", fontWeight: 600, px: 2 },

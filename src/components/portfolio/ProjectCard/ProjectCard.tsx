@@ -3,6 +3,7 @@ import { Chip, Box, Typography, Button, Card, CardContent, CardMedia, CardAction
 import { GitHub, Launch } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import type { Project } from "../../../data/projects";
+import { getSkillIcon } from "../../../data/skillIcons";
 import { descriptionStyle, projectCardStyles } from "./ProjectCard.styles";
 
 const MAX_LINES = 4;
@@ -110,13 +111,19 @@ export const ProjectCard = ({ project }: { project: Project }) => {
         {techStack && techStack.length > 0 && (
           <Box sx={projectCardStyles.tags}>
             {techStack.map((tag: string) => (
-              <Chip
-                key={tag}
-                label={tag}
-                size="small"
-                variant="outlined"
-                sx={projectCardStyles.tag}
-              />
+              (() => {
+                const SkillIcon = getSkillIcon(tag);
+                return (
+                  <Chip
+                    key={tag}
+                    label={tag}
+                    icon={SkillIcon ? <SkillIcon color="default" size={16} title={tag} /> : undefined}
+                    size="small"
+                    variant="outlined"
+                    sx={projectCardStyles.tag}
+                  />
+                );
+              })()
             ))}
           </Box>
         )}
